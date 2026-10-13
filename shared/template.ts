@@ -3,7 +3,7 @@ import type { PageSetup } from "./pageSetup";
 export const RENDER_PORT = 3789;
 
 export const MAX_PAGES = 8;
-export const MAX_BLOCKS = 24;
+export const MAX_BLOCKS = 40;
 export const MIN_FONT_SIZE = 1;
 export const MAX_FONT_SIZE = 72;
 export const MIN_IMAGE_WIDTH = 40;

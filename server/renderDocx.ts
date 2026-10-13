@@ -168,13 +168,17 @@ function editorTextWidth(block: TextBlock, pageWidth: number): number {
   return Math.min(460, Math.max(160, pageWidth - block.xPx - 24));
 }
 
+function variableWidth(value: string, xPx: number, pageWidth: number): number {
+  return Math.min(pageWidth - xPx - 16, Math.ceil(value.length * 9.2) + 24);
+}
+
 function blockToParagraph(block: Exclude<TemplateBlock, TableBlock | ColumnsBlock>, imageCount: number, pageWidth: number): Paragraph {
   switch (block.type) {
     case "text":
       return textParagraph(block, pageWidth);
     case "variable":
       return new Paragraph({
-        frame: placedFrame(block.xPx, block.yPx, 160),
+        frame: placedFrame(block.xPx, block.yPx, variableWidth(block.value, block.xPx, pageWidth)),
         spacing: exactLine(24),
         children: [new TextRun({ text: block.value, font: "Calibri", size: 24 })],
       });

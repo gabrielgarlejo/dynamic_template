@@ -1801,7 +1801,7 @@ function fitChrome<T extends EditorBlock>(block: T, layer: "page" | "header" | "
 function boxWidth(block: EditorBlock, pageWidth = PAGE_WIDTH): number {
   if (block.type === "text") return block.widthPx ?? Math.min(460, Math.max(160, pageWidth - block.xPx - 24));
   if (block.type === "line" || block.type === "table" || block.type === "image" || block.type === "columns") return block.widthPx;
-  return 160;
+  return Math.min(pageWidth - block.xPx - 16, Math.ceil(block.value.length * 9.2) + 24);
 }
 
 function BlockRow({
@@ -2027,7 +2027,7 @@ function VariableField({
       readOnly={!editing}
       size={Math.max(value.length, 8)}
       onChange={(event) => onChange(event.target.value)}
-      style={{ fontFamily: "Calibri", fontSize: "12pt" }}
+      style={{ fontFamily: "Calibri", fontSize: "12pt", lineHeight: 1, padding: 0, width: "100%" }}
       className={`bg-transparent text-slate-900 outline-none placeholder:text-slate-400 ${editing ? "select-text" : "pointer-events-none"}`}
     />
   );

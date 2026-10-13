@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Editor } from "./Editor";
 import { createStarterTemplates, toRequest, type EditorTemplate } from "./model";
-import { placeProposalTerms } from "./proposalTemplate";
+import { upgradeProposal } from "./proposalTemplate";
 import { TemplatesScreen } from "./TemplatesScreen";
 
 const STORAGE_KEY = "template-maker.templates";
@@ -114,7 +114,7 @@ function loadSavedTemplates(): EditorTemplate[] | null {
     if (!raw) return null;
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed) || parsed.length === 0 || !parsed.every(isTemplate)) return null;
-    return parsed.map(placeProposalTerms);
+    return parsed.map(upgradeProposal);
   } catch {
     return null;
   }
