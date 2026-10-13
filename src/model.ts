@@ -19,7 +19,7 @@ import {
   type TemplateBlock,
   type TextBlock,
 } from "../shared/template";
-import { defaultPageSetup, legacyPageSetup, loadDefaultPageSetup, type ClampBounds, type PageSetup } from "../shared/pageSetup";
+import { defaultPageSetup, loadDefaultPageSetup, type ClampBounds, type PageSetup } from "../shared/pageSetup";
 import { createProposalTemplate } from "./proposalTemplate";
 import { createSampleImage } from "./sampleImage";
 
@@ -79,7 +79,7 @@ export function createStarterTemplates(): EditorTemplate[] {
       footer: [],
       pages: threePages([]),
     },
-    { ...createProposalTemplate(), pageSetup: legacyPageSetup() },
+    createProposalTemplate(),
   ].map((template) => (template.id === "proposal" ? template : { ...template, pageSetup }));
 }
 
